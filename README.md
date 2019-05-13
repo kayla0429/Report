@@ -1,5 +1,5 @@
-# Report(title : 이미지 업로드)
-## 1조 과제용 Repository
+# 1조 과제용 Repository
+## Report(title : 이미지 업로드)
 ## 1. Url
    ### 테스트 페이지 => https://phptestweb123.azurewebsites.net
    ### 발표용 페이지 => https://phpreport.azurewebsites.net
