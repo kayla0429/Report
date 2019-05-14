@@ -26,16 +26,18 @@ notepad .env
 
 DB_PASSWORD=비밀번호 -> 비밀번호를 각자 db root 비밀번호로
 ```
-#### mysql report Database 생성(5.X 버전)
+#### mysql report Database 생성 및 migration(5.X 버전)
 ```bash
 create database report;
 quit;
+php artisan migrate
 ```
-#### mysql report Database 생성(8 버전 이상)
+#### mysql report Database 생성 및 migration(8 버전 이상)
 ```bash
 alter user 'root'@'localhost' identified with mysql_native_password by 비밀번호;
 create database report;
 quit;
+php artisan migrate
 ```
 #### php 설정
 ```bash
