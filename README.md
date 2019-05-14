@@ -1,5 +1,5 @@
 # 1조 과제용 Repository
-[![Build Status](https://phpreport.azurewebsites.net)]
+[![Build Status](https://www.computelabo.com/repos/github/status/running.svg)](https://phpreport.azurewebsites.net)
 
 ## Report(title : 이미지 업로드)
 ## 1. Url
