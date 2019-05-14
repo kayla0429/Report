@@ -1,4 +1,4 @@
-# 1조 과제용 Repository
+# 1조 이미지 업로드
 #### 이미지 업로드라는 주제로 Laravel 프레임워크와 기타 오픈 소스를 활용하여 웹을 MVC모델로 구축하였습니다. 실질적인 발표는 웹 호스팅으로 간편하게 진행하며 실직적으로 관심이 있으신 분은 아래 로컬 호스팅 테스트 방법과 미리 .env.example 파일을 구현해 놨으며 mysql과 composer와 php만 설치하면 바로 로컬 테스트가 가능하도록 구현 해놓았습니다. 참고로 php는 7.2.18 버전으로 제작 및 테스트를 진행 하였으며 php_fileinfo와 php_pdo_mysql 확장 라이브러리를 사용합니다.
 [![Build Status](https://www.computelabo.com/repos/github/status/running.svg)](https://phpreport.azurewebsites.net)
 
