@@ -174,7 +174,7 @@ img.zoom {
                     {
                       disqus_shortname = 'computelabo-com'; 
                      disqus_identifier = $(this).attr('ti');
-                     disqus_url = 'https://phpreport.azurewebsites.net'+$(this).attr('image');
+                     disqus_url = $(this).attr('image');
                       //reset("newid4", "http://example.com/unique-path-to-article4/","Article Title 4", 'ru');
                       //디스쿼스 부르는 부분
                     });
