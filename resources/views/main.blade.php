@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>{{ config('app.name', '1 조') }}</title>
         <link href="/css/bootstrap.min.css" rel="stylesheet">
         <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="/vendor/jquery.fancybox.min.css" media="screen">
@@ -80,7 +80,7 @@ img.zoom {
                           <div class="row no-gutters align-items-center">
                             <div class="col mr-2">
                               <div style="text-align:center" class="text-xl font-weight-bold text-success text-uppercase mb-1">{{$value->title}}</div>
-                              <a href="{{$value->image}}" title="{{$value->content}}" class="fancybox" rel="ligthbox">
+                            <a href="{{$value->image}}" title="{{$value->content}}" class="fancybox" rel="ligthbox" ti="{{$value->title}}-{{$value->pid}}">
                                     <img  src="{{$value->image}}" class="zoom img-fluid "  alt="{{$value->title}}">
                                 </a>
                             <a class="btn btn-info col-md-12" href="{{ url('/like') }}/{{$value->pid}}">좋아요 : {{$value->likes}} <i class="fas fa-thumbs-up fa-2x text-gray-300"></i></a>
@@ -102,21 +102,36 @@ img.zoom {
           <script src="/js/bootstrap.min.js"></script>
           <script src="/vendor/jquery.min.js"></script>
           <script src="/vendor/jquery.fancybox.min.js"></script>
+          <!--디스쿼스 추가-->
           <script>
+            //한글
+            var disqus_shortname = 'test';
+            var disqus_identifier = 'okok';
+            var disqus_url = 'http://example.com/unique-path-to-article-1/';
+          var disqus_config = function () { 
+	  this.language = "ko";
+	};         
                 $(document).ready(function(){
                   $(".fancybox").fancybox({
                         openEffect: "none",
                         closeEffect: "none"
                     });
-    
+                    //디스쿼스 쓸라고 추가함
+                    $(".fancybox").on("click", function()
+                    {
+                     disqus_shortname = 'computelabo-com'; 
+                     disqus_identifier = $(this).attr('ti');
+                     disqus_url = 'https://phpreport.azurewebsites.net'+$(this).attr('image');
+                      //reset("newid4", "http://example.com/unique-path-to-article4/","Article Title 4", 'ru');
+                      //디스쿼스 부르는 부분
+                      
+                    });
                     $(".zoom").hover(function(){
-    
                         $(this).addClass('transition');
-                    }, function(){
-    
+                    }, function(){    
                         $(this).removeClass('transition');
                     });
-                });
+                });                
         </script>
     </body>
 </html>

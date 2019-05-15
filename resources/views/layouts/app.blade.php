@@ -157,22 +157,38 @@ img.zoom {
     <script src="/vendor/jquery.min.js"></script>
     <script src="/vendor/jquery.fancybox.min.js"></script>
     <script>
+                  //한글
+                  var disqus_shortname = 'test';
+            var disqus_identifier = 'okok';
+            var disqus_url = 'http://example.com/unique-path-to-article-1/';
+          var disqus_config = function () { 
+	  this.language = "ko";
+	};         
             $(document).ready(function(){
               $(".fancybox").fancybox({
                     openEffect: "none",
                     closeEffect: "none"
                 });
-
+                //디스쿼스 쓸라고 추가함
+                $(".fancybox").on("click", function()
+                    {
+                      disqus_shortname = 'computelabo-com'; 
+                     disqus_identifier = $(this).attr('ti');
+                     disqus_url = 'https://phpreport.azurewebsites.net'+$(this).attr('image');
+                      //reset("newid4", "http://example.com/unique-path-to-article4/","Article Title 4", 'ru');
+                      //디스쿼스 부르는 부분
+                    });
                 $(".zoom").hover(function(){
-
                     $(this).addClass('transition');
                 }, function(){
-
                     $(this).removeClass('transition');
                 });
             });
     </script>
     <script>
+      //issue #4
+      if(window.location.href == "https://phpreport.azurewebsites.net/home")
+      {
         var imageLoader = document.getElementById('filePhoto');
             imageLoader.addEventListener('change', handleImage, false);
 
@@ -183,6 +199,7 @@ img.zoom {
         }
         reader.readAsDataURL(e.target.files[0]);
     }
+      }
     </script>
 </body>
 </html>
