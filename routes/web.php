@@ -12,12 +12,17 @@
 */
 
 use App\Post;
+use App\Utils\Utils;
 use Illuminate\Support\Facades\Auth;
 
-
 Route::get('/', function () {
-    $all = Post::all();
-    return view('main')->with(['all' => $all,]);
+    $utils = new Utils();
+    return $utils->get_page_guest_post(0, 12, 'main');
+});
+
+Route::get('/posts/{page}', function ($page) {
+    $utils = new Utils();
+    return $utils->get_page_guest_post($page, 12, 'main');
 });
 
 Route::get('/like/{pid}', function ($pid) {
@@ -33,4 +38,6 @@ Route::post('/home', 'HomeController@validator')->name('home');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/home/delete/{pid}', 'HomeController@delete');
 Route::get('/home/change', 'HomeController@change');
+Route::get('/home/{page}', 'HomeController@page');
 Route::get('/home/change/check', 'HomeController@check');
+

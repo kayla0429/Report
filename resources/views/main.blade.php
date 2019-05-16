@@ -74,7 +74,7 @@ img.zoom {
     <!-- 켄텐츠 -->
     <div class="container page-top">
             <div class="row">
-                @foreach ($all as $value)
+                @foreach ($posts as $value)
                 <div class="card col-lg-3 col-md-4 col-xs-6 thumb">
                         <div class="card-body">
                           <div class="row no-gutters align-items-center">
@@ -90,7 +90,15 @@ img.zoom {
                     </div>
                 @endforeach
         </div>
-                  <!-- Footer -->
+                <ul class="pagination justify-content-center mb-4">
+                  <li class="page-item" id="p_p">
+                  <a class="page-link" id="p_p1" href="#">← 이전</a>
+                  </li>
+                  <li class="page-item" id="p_n">
+                    <a class="page-link" id="p_n1" href="#">다음 →</a>
+                  </li>
+                </ul>
+        <!-- Footer -->
       <footer class="sticky-footer">
             <div class="container">
               <div class="copyright text-center">
@@ -103,20 +111,67 @@ img.zoom {
           <script src="/vendor/jquery.min.js"></script>
           <script src="/vendor/jquery.fancybox.min.js"></script>
           <script>
+            //한글
+            var disqus_shortname = 'test';
+            var disqus_identifier = 'okok';
+            var disqus_url = 'http://example.com/unique-path-to-article-1/';
+          var disqus_config = function () { 
+	  this.language = "ko";
+	};         
                 $(document).ready(function(){
                   $(".fancybox").fancybox({
                         openEffect: "none",
                         closeEffect: "none"
                     });
-    
+                    //디스쿼스 쓸라고 추가함
+                    $(".fancybox").on("click", function()
+                    {
+                     disqus_shortname = 'computelabo-com'; 
+                     disqus_identifier = $(this).attr('ti');
+                     disqus_url = $(this).attr('image');
+                      //reset("newid4", "http://example.com/unique-path-to-article4/","Article Title 4", 'ru');
+                      //디스쿼스 부르는 부분
+                      
+                    });
                     $(".zoom").hover(function(){
-    
                         $(this).addClass('transition');
-                    }, function(){
-    
+                    }, function(){    
                         $(this).removeClass('transition');
                     });
-                });
+                });                
         </script>
+<script>
+  //페이지를 위한 스크립트 ㅇㅅㅇ
+  var count = {{$count}};
+  var page = 0;
+  var max = 12;
+  $(document).ready(function(){
+    if(window.location.pathname == "/")
+    {
+      $('#p_p').addClass('disabled');
+      if(count > max)
+        $('#p_n1').attr('href', '/posts/2');
+      else
+        $('#p_n').addClass('disabled');
+    }else
+    {
+      var page = window.location.pathname.split('/')[2];
+      if(page <= 1)
+      {
+        $('#p_p').addClass('disabled');
+      }else
+      {
+        $('#p_p1').attr('href', '/posts/' +(Number(page) - 1));
+      }
+      if(page >= count / max)
+      {
+        $('#p_n').addClass('disabled');
+      }else
+      {
+        $('#p_n1').attr('href', '/posts/' + (Number(page) + 1));
+      }
+    }
+  });
+</script>
     </body>
 </html>

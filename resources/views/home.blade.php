@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+
+
       <!-- Main Content -->
       <div id="content">
         <!-- End of Topbar -->
@@ -65,7 +67,7 @@
                                     <img  src="{{$value->image}}" class="zoom img-fluid "  alt="{{$value->title}}">
                                 </a>
                                 <p style="text-align:center">좋아요 : {{$value->likes}}</p>
-                                <a class="btn btn-danger col-md-12" href="{{ url('/home/delete') }}/{{$value->pid}}">삭제하기 <i class="fas fa-trash fa-2x text-gray-300"></i></a>
+                                <a class="btn btn-danger col-md-12" href="#" onclick="deletefunc('{{ url('/home/delete') }}/{{$value->pid}}');">삭제하기 <i class="fas fa-trash fa-2x text-gray-300"></i></a>
                         </div>  
                     @endforeach
                     @else
@@ -73,6 +75,14 @@
                   @endif
                 </div>
                 </div>
+                <ul class="pagination justify-content-center mb-4">
+                  <li class="page-item" id="p_p">
+                  <a class="page-link" id="p_p1" href="#">← 이전</a>
+                  </li>
+                  <li class="page-item" id="p_n">
+                    <a class="page-link" id="p_n1" href="#">다음 →</a>
+                  </li>
+                </ul>
               </div>
             </div>
             <!-- 업로드 -->
@@ -136,8 +146,6 @@
               </div>
             </div>
           </div>
-
-
         </div>
         <!-- /.container-fluid -->
       </div>
@@ -147,4 +155,60 @@
   <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
   </a>
+
+<script src="/vendor/jquery.min.js"></script>
+<script>
+//issue #5 -> 스크립트 오류 수정
+var imageLoader = document.getElementById('filePhoto');
+imageLoader.addEventListener('change', handleImage, false)
+function handleImage(e) {
+  var reader = new FileReader();
+  reader.onload = function (event) {
+    $('.uploader img').attr('src',event.target.result);
+  }
+  reader.readAsDataURL(e.target.files[0]);
+}
+</script>
+<script>
+  //페이지를 위한 스크립트 ㅇㅅㅇ
+  var count = {{$count}};
+  var page = 0;
+  var max = 4;
+  $(document).ready(function(){
+    if(window.location.pathname == "/home")
+    {
+      $('#p_p').addClass('disabled');
+      if(count > max)
+        $('#p_n1').attr('href', '/home/2');
+      else
+        $('#p_n').addClass('disabled');
+    }else
+    {
+      var page = window.location.pathname.split('/')[2];
+      if(page <= 1)
+      {
+        $('#p_p').addClass('disabled');
+      }else
+      {
+        $('#p_p1').attr('href', '/home/' +(Number(page) - 1));
+      }
+      if(page >= count / max)
+      {
+        $('#p_n').addClass('disabled');
+      }else
+      {
+        $('#p_n1').attr('href', '/home/' + (Number(page) + 1));
+      }
+    }
+  });
+</script>
+<script>
+  function deletefunc(params) {
+    var r = confirm("정말로 삭제 하시겠습니까??");
+    if(r == true)
+    {
+      location.href = params;
+    }
+  }
+</script>
 @endsection

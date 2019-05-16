@@ -115,10 +115,15 @@ img.zoom {
       <li class="nav-item">
         <a class="nav-link" href="{{ url('/') }}">
           <i class="fas fa-home"></i>
-          <span>홈</span></a>
+          <span>메인</span></a>
+      </li>    
+      <li class="nav-item">
+        <a class="nav-link" href="{{ url('/home') }}">
+          <i class="fas fa-home"></i>
+          <span>대시보드</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+        <a class="nav-link" href="{{ url('/home/change') }}">
           <i class="fas fa-key"></i>
           <span>비밀번호 변경</span></a>
       </li>
@@ -154,35 +159,35 @@ img.zoom {
     <!-- 부트 스트랩및 sb admin 스크립트 입니다.-->
     <script src="/js/app.js"></script>
     <script src="/js/bootstrap.min.js"></script>
-    <script src="/vendor/jquery.min.js"></script>
     <script src="/vendor/jquery.fancybox.min.js"></script>
     <script>
-            $(document).ready(function(){
-              $(".fancybox").fancybox({
-                    openEffect: "none",
-                    closeEffect: "none"
-                });
-
-                $(".zoom").hover(function(){
-
-                    $(this).addClass('transition');
-                }, function(){
-
-                    $(this).removeClass('transition');
-                });
+    //한글
+    var disqus_shortname = 'test';
+    var disqus_identifier = 'okok';
+    var disqus_url = 'http://example.com/unique-path-to-article-1/';
+    var disqus_config = function () { 
+      this.language = "ko";
+      };         
+      $(document).ready(function(){
+        $(".fancybox").fancybox({
+          openEffect: "none",
+          closeEffect: "none"
+          });
+          //디스쿼스 쓸라고 추가함
+          $(".fancybox").on("click", function()
+          {
+            disqus_shortname = 'computelabo-com'; 
+            disqus_identifier = $(this).attr('ti');
+            disqus_url = $(this).attr('image');
+            //reset("newid4", "http://example.com/unique-path-to-article4/","Article Title 4", 'ru');
+            //디스쿼스 부르는 부분
             });
-    </script>
-    <script>
-        var imageLoader = document.getElementById('filePhoto');
-            imageLoader.addEventListener('change', handleImage, false);
-
-    function handleImage(e) {
-        var reader = new FileReader();
-        reader.onload = function (event) {
-            $('.uploader img').attr('src',event.target.result);
-        }
-        reader.readAsDataURL(e.target.files[0]);
-    }
+            $(".zoom").hover(function(){
+              $(this).addClass('transition');
+              }, function(){
+                $(this).removeClass('transition');
+                });
+                });
     </script>
 </body>
 </html>
