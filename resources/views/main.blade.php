@@ -63,14 +63,27 @@ img.zoom {
     <body>
             @if(Route::has('login'))
                     @auth
+                        <a class="btn btn-info" href="{{ url('/') }}">메인</a>
                         <a class="btn btn-info" href="{{ url('/home') }}">대시보드</a>
                     @else
+                        <a class="btn btn-info" href="{{ url('/') }}">메인</a>
                         <a class="btn btn-info" href="{{ route('login') }}">로그인</a>
                         @if (Route::has('register'))
                             <a class="btn btn-info" href="{{ route('register') }}">등록하기</a>
                         @endif
                     @endauth
+                    <select class="btn btn-info" onchange="location = this.value;">
+                          <option>1조 조원</option>
+                          <option value="/groups/1">정윤석</option>
+                          <option value="/groups/2">홍인수</option>
+                          <option value="/groups/3">윤혁</option>
+                          <option value="/groups/4">서정민</option>
+                          <option value="/groups/5">전사빈</option>
+                          <option value="/groups/6">황승찬</option>
+                        </select>
             @endif
+            @yield('group')
+            @if($posts != null && Request::is('/'))
     <!-- 켄텐츠 -->
     <div class="container page-top">
             <div class="row">
@@ -90,6 +103,7 @@ img.zoom {
                     </div>
                 @endforeach
         </div>
+    </div>
                 <ul class="pagination justify-content-center mb-4">
                   <li class="page-item" id="p_p">
                   <a class="page-link" id="p_p1" href="#">← 이전</a>
@@ -98,6 +112,7 @@ img.zoom {
                     <a class="page-link" id="p_n1" href="#">다음 →</a>
                   </li>
                 </ul>
+           @endif
         <!-- Footer -->
       <footer class="sticky-footer">
             <div class="container">

@@ -20,6 +20,10 @@ Route::get('/', function () {
     return $utils->get_page_guest_post(0, 12, 'main');
 });
 
+Route::get('/groups/{group}', function ($group) {
+    return View::make("/groups/".$group)->with(['posts' => null, 'count' => 0]);
+});
+
 Route::get('/posts/{page}', function ($page) {
     $utils = new Utils();
     return $utils->get_page_guest_post($page, 12, 'main');
